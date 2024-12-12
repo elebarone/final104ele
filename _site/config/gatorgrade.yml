@@ -1,0 +1,124 @@
+setup: |
+  echo "🐊 Attempt to install ruff"
+  echo "🐊 Will not re-install if already installed"
+  pipx install ruff
+targets:
+  PLO1:
+    - R: 80          # Expressed as a percentage
+  PLO2:
+    - R: 80          # Expressed as a percentage
+thresholds:
+  PLO1:
+    - I: 0           # Expressed as a raw number of checks
+    - D: 1           # Expressed as a raw number of checks 
+    - R: 2           # Expressed as a raw number of checks
+    - P: 3           # Expressed as a raw number of checks
+  PLO2:
+    - I: 0           # Expressed as a raw number of checks
+    - D: 3           # Expressed as a raw number of checks
+    - R: 5           # Expressed as a raw number of checks
+    - P: 8           # Expressed as a raw number of checks
+---
+- README.md:
+    - description: Ensure that a README.md files exist
+      check: ConfirmFileExists
+    - description: No TODOs remain in the README.md files
+      check: MatchFileFragment
+      options:
+        fragment: "TODO"
+        count: 0
+        exact: true
+      objectives:
+        CLO2:
+          degree:
+            - SE: "I"
+              rationale: "PO2. pass demonstrates competency in the theories, models, and practices of project domains that require the engineering of software."
+        CLO3:
+          degree:
+            - SE: "I"
+              rationale: "PO1. pass indicates effectively design, implement, evaluate, improve, and document a solution to a problem delivered as a maintainable software system."
+        CLO4:
+          degree:
+            - SE: "I"
+              rationale: "PO2. pass demonstrates competency in the theories, models, and practices of project domains that require the engineering of software."
+
+- writing/index.html:
+    - description: Ensure that a index.html files exist
+      check: ConfirmFileExists
+    - description: <table> does not exist in the index.html files
+      check: MatchFileFragment
+      options:
+        fragment: "<table"
+        count: 1
+        exact: false
+      objectives:
+        CLO2:
+          degree:
+            - SE: "I"
+              rationale: "PO2. pass demonstrates competency in the theories, models, and practices of project domains that require the engineering of software."
+        CLO4:
+          degree:
+            - SE: "I"
+              rationale: "PO2. pass demonstrates competency in the theories, models, and practices of project domains that require the engineering of software."
+    - description: <img> does not exist in the index.html files
+      check: MatchFileFragment
+      options:
+        fragment: "<img"
+        count: 1
+        exact: false
+      objectives:
+        CLO2:
+          degree:
+            - SE: "I"
+              rationale: "PO2. pass demonstrates competency in the theories, models, and practices of project domains that require the engineering of software."
+        CLO4:
+          degree:
+            - SE: "I"
+              rationale: "PO2. pass demonstrates competency in the theories, models, and practices of project domains that require the engineering of software."
+    - description: <ul> does not exist in the index.html files
+      check: MatchFileFragment
+      options:
+        fragment: "<ul"
+        count: 1
+        exact: false
+      objectives:
+        CLO2:
+          degree:
+            - SE: "I"
+              rationale: "PO2. pass demonstrates competency in the theories, models, and practices of project domains that require the engineering of software."
+        CLO4:
+          degree:
+            - SE: "I"
+              rationale: "PO2. pass demonstrates competency in the theories, models, and practices of project domains that require the engineering of software."
+
+- writing/final.md:
+    - description: Ensure that a final.md files exist
+      check: ConfirmFileExists
+      objectives:
+        CLO2:
+          degree:
+            - SE: "I"
+              rationale: "PO2. pass demonstrates competency in the theories, models, and practices of project domains that require the engineering of software."
+        CLO3:
+          degree:
+            - SE: "I"
+              rationale: "PO1. pass indicates effectively design, implement, evaluate, improve, and document a solution to a problem delivered as a maintainable software system."
+        CLO4:
+          degree:
+            - SE: "I"
+              rationale: "PO2. pass demonstrates competency in the theories, models, and practices of project domains that require the engineering of software."
+
+# count number of commits in the GitHub repository
+- description: Have at least 3 of commits in repository
+  check: CountCommits
+  options:
+    count: 3
+  objectives:
+  CLO2:
+    degree:
+      - SE: "I"
+        rationale: "PO2. pass demonstrates competency in the theories, models, and practices of project domains that require the engineering of software."
+  CLO3:
+    degree:
+      - SE: "I"
+        rationale: "PO1. pass indicates effectively design, implement, evaluate, improve, and document a solution to a problem delivered as a maintainable software system."
